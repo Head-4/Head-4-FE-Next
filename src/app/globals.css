@@ -2,25 +2,146 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #FAFAFA;
+    --foreground: #33363F;
 }
 
 @theme {
-  --font-pretendard: "pretendard";
-  --color-black: #333333;
+    --font-pretendard: "pretendard";
+    /*--color-black: #33363F;*/
+    --color-blue-primary: #246AD2;
+
+    --color-gray-lightGray: #E9E9E9;
+    --color-gray-50: #F7F7F7;
+    --color-gray-200: #E2E2E2;
+    --color-gray-300: #D0D0D0;
+    --color-gray-400: #B7B7B7;
+    --color-gray-500: #949494;
+    --color-gray-600: #707070;
 }
 
 @layer components {
-  .typography-example {
-    font-size: 1.125rem;
-    line-height: 1.5rem;
-    font-weight: 600;
-  }
+    .typography-H1 {
+        font-size: 2rem; /* 32px */
+        line-height: 2.75rem; /* 44px */
+        font-weight: 700;
+    }
+
+    .typography-H2 {
+        font-size: 1.75rem; /* 28px */
+        line-height: 2.25rem; /* 36px */
+        font-weight: 700;
+    }
+
+    .typography-H3 {
+        font-size: 1.5rem; /* 24px */
+        line-height: 2rem; /* 32px */
+        font-weight: 700;
+    }
+
+    .typography-H4 {
+        font-size: 1.25rem; /* 20px */
+        line-height: 1.75rem; /* 28px */
+        font-weight: 700;
+    }
+
+    .typography-T1 {
+        font-size: 1.5rem; /* 24px */
+        line-height: 2rem; /* 32px */
+        font-weight: 600;
+    }
+
+    .typography-T2_bold {
+        font-size: 1.25rem; /* 20px */
+        line-height: 1.75rem; /* 28px */
+        font-weight: 700;
+    }
+
+    .typography-T2_semibold {
+        font-size: 1.25rem; /* 20px */
+        line-height: 1.75rem; /* 28px */
+        font-weight: 600;
+    }
+
+    .typography-T3_semibold {
+        font-size: 1.125rem; /* 18px */
+        line-height: 1.5rem; /* 24px */
+        font-weight: 600;
+    }
+
+    .typography-T3_medium {
+        font-size: 1.125rem; /* 18px */
+        line-height: 1.5rem; /* 24px */
+        font-weight: 500;
+    }
+
+    .typography-T4_bold {
+        font-size: 1rem; /* 16px */
+        line-height: 1.5rem; /* 24px */
+        font-weight: 700;
+    }
+
+    .typography-T4_semibold {
+        font-size: 1rem; /* 16px */
+        line-height: 1.5rem; /* 24px */
+        font-weight: 600;
+    }
+
+    .typography-T4_medium {
+        font-size: 1rem; /* 16px */
+        line-height: 1.5rem; /* 24px */
+        font-weight: 500;
+    }
+
+    .typography-B1_bold {
+        font-size: 1rem; /* 16px */
+        line-height: 1.5rem; /* 24px */
+        font-weight: 700;
+    }
+
+    .typography-B1_semibold {
+        font-size: 1rem; /* 16px */
+        line-height: 1.5rem; /* 24px */
+        font-weight: 600;
+    }
+
+    .typography-B1_medium {
+        font-size: 1rem; /* 16px */
+        line-height: 1.5rem; /* 24px */
+        font-weight: 500;
+    }
+
+    .typography-B2_semibold {
+        font-size: 0.875rem; /* 14px */
+        line-height: 1.125rem; /* 18px */
+        font-weight: 600;
+    }
+
+    .typography-B2_medium {
+        font-size: 0.875rem; /* 14px */
+        line-height: 1.125rem; /* 18px */
+        font-weight: 500;
+    }
+
+    .typography-B3_semibold {
+        font-size: 0.75rem; /* 12px */
+        line-height: 1rem; /* 16px */
+        font-weight: 600;
+    }
+
+    .typography-B3_medium {
+        font-size: 0.75rem; /* 12px */
+        line-height: 1rem; /* 16px */
+        font-weight: 500;
+    }
+}
+
+html, body {
+    touch-action: manipulation;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-pretendard), sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-pretendard), sans-serif;
 }
