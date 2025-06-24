@@ -14,7 +14,7 @@ export default function Header() {
   const { title, showBackButton, showNavMenu } = getHeaderConfig(pathName)
 
   return (
-    <header className="flex items-center gap-2 py-3">
+    <header className="flex items-center gap-2 py-3 ">
       {showBackButton && (
         <button onClick={router.back}>
           <ArrowIcon />

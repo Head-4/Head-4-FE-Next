@@ -26,6 +26,10 @@ export const getHeaderConfig = (pathname: string) => {
     '/signup': {
       title: '',
     },
+    '/login': {
+      title: '',
+      showBackButton: false,
+    },
   }
 
   return { ...defaultConfig, ...configMap[pathname] }

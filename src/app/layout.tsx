@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import Header from '@/components/layout/Header'
+import LayoutWrapper from '@/components/layout/RootLayoutWrapper'
 
 export const metadata: Metadata = {
   title: 'univon',
@@ -21,9 +21,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="mx-auto flex min-h-screen max-w-[500px] flex-col px-5 shadow-2xl">
-        <Header />
-        <main className="flex-1 flex flex-col">{children}</main>
+      <body>
+        <LayoutWrapper>{children}</LayoutWrapper>
         <div id="toast-root" />
       </body>
     </html>
