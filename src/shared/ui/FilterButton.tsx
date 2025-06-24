@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 
 interface FilterButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isSelected: boolean

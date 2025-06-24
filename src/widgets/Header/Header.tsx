@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname, useRouter } from 'next/navigation'
-import { getHeaderConfig } from '@/lib/constants/headerConfig'
+import { getHeaderConfig } from '@/widgets/Header/headerConfig'
 import Link from 'next/link'
 import ArrowIcon from '@/assets/ArrowIcon.svg'
 import SearchIcon from '@/assets/SearchIcon.svg'

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import LayoutWrapper from '@/components/layout/RootLayoutWrapper'
+import LayoutWrapper from '@/widgets/RootLayoutWrapper'
 
 export const metadata: Metadata = {
   title: 'univon',
