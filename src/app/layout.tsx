@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import LayoutWrapper from '@/widgets/RootLayoutWrapper'
+import { ToastProvider } from '@/shared/providers/ToastContext'
 
 export const metadata: Metadata = {
   title: 'univon',
@@ -22,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <LayoutWrapper>{children}</LayoutWrapper>
+        <ToastProvider>
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </ToastProvider>
         <div id="toast-root" />
       </body>
     </html>
