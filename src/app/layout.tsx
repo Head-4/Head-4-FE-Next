@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import LayoutWrapper from '@/widgets/RootLayoutWrapper'
 import { ToastProvider } from '@/shared/providers/ToastContext'
+import { QueryProvider } from '@/shared/providers/QueryProvider'
 
 export const metadata: Metadata = {
   title: 'univon',
@@ -23,12 +24,14 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <ToastProvider>
-          <LayoutWrapper>{children}</LayoutWrapper>
-        </ToastProvider>
-        <div id="toast-root" />
-        <div id="modal-root" />
-        <div id="drawer-root" />
+        <QueryProvider>
+          <ToastProvider>
+            <LayoutWrapper>{children}</LayoutWrapper>
+          </ToastProvider>
+          <div id="toast-root" />
+          <div id="modal-root" />
+          <div id="drawer-root" />
+        </QueryProvider>
       </body>
     </html>
   )
