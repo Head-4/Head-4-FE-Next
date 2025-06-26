@@ -10,7 +10,7 @@ interface ModalContextType {
 
 const ModalContext = createContext<ModalContextType | null>(null)
 
-function Modal({ children }: { children: ReactNode }) {
+function ModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
@@ -85,12 +85,14 @@ function ModalContent({ children }: { children: ReactNode }) {
   )
 }
 
-Modal.ModalTrigger = ModalTrigger
-Modal.ModalCloseButton = ModalCloseButton
-Modal.ModalHeader = ModalHeader
-Modal.ModalContent = ModalContent
-Modal.ModalTitle = ModalTitle
-Modal.ModalDescription = ModalDescription
-Modal.ModalFooter = ModalFooter
+const Modal = Object.assign(ModalProvider, {
+  Trigger: ModalTrigger,
+  CloseButton: ModalCloseButton,
+  Header: ModalHeader,
+  Content: ModalContent,
+  Title: ModalTitle,
+  Description: ModalDescription,
+  Footer: ModalFooter,
+})
 
 export default Modal

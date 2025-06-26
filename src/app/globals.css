@@ -18,6 +18,7 @@
     --color-gray-500: #949494;
     --color-gray-600: #707070;
 
+    --breakpoint-sm: 31.25rem;
 }
 
 @layer components {

@@ -28,6 +28,7 @@ export default function RootLayout({
         </ToastProvider>
         <div id="toast-root" />
         <div id="modal-root" />
+        <div id="drawer-root" />
       </body>
     </html>
   )
