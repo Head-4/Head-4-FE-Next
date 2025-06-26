@@ -1,3 +1,11 @@
+import InputForm from '@/features/keyword/ui/InputForm'
+import KeywordList from '@/features/keyword/ui/keywordList'
+
 export default function Page() {
-  return <div></div>
+  return (
+    <>
+      <InputForm />
+      <KeywordList />
+    </>
+  )
 }

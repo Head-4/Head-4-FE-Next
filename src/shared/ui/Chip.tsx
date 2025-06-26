@@ -14,7 +14,7 @@ function Chip({ children, onClick }: ChipProps) {
         onClick={onClick}
         className="text-gray-300 transition-colors duration-100 ease-in-out hover:text-blue-primary active:text-blue-primary"
       >
-        <CrossFillIcon />
+        <CrossFillIcon className="w-6"/>
       </button>
     </div>
   )
