@@ -27,6 +27,7 @@ export default function RootLayout({
           <LayoutWrapper>{children}</LayoutWrapper>
         </ToastProvider>
         <div id="toast-root" />
+        <div id="modal-root" />
       </body>
     </html>
   )
