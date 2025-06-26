@@ -5,9 +5,7 @@ import {
   ReactNode,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
-  useRef,
   useState,
 } from 'react'
 import { createPortal } from 'react-dom'
@@ -31,24 +29,7 @@ const ToastContext = createContext<ToastContextType | null>(null)
 
 export function ToastProvider({ children }: ToastProviderProps) {
   const [toasts, setToasts] = useState<Toast[]>([])
-  const toastRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    let toastRoot = document.getElementById('toast-root')
-    if (!toastRoot) {
-      toastRoot = document.createElement('div')
-      toastRoot.setAttribute('id', 'toast-root')
-      document.body.appendChild(toastRoot)
-    }
-    toastRef.current = toastRoot
-
-    return () => {
-      if (toastRoot && toastRoot.parentNode) {
-        toastRoot.parentNode.removeChild(toastRoot)
-      }
-    }
-  }, [])
-
+  console.log('gg')
   const addToast = useCallback((message: string, type: 'success' | 'error') => {
     const id = Math.random().toString(36).slice(2)
     setToasts((prev) => [...prev, { id, message, type }])
@@ -73,7 +54,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
   return (
     <ToastContext.Provider value={actions}>
       {children}
-      {toastRef.current &&
+      {toasts.length > 0 &&
         createPortal(
           <div className="fixed top-4 right-4 z-50 flex flex-col gap-2">
             {toasts.map((toast) => (
@@ -85,7 +66,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
               </div>
             ))}
           </div>,
-          toastRef.current,
+          document.getElementById('toast-root') as HTMLElement,
         )}
     </ToastContext.Provider>
   )
@@ -94,7 +75,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
 export function useToast(): ToastContextType {
   const context = useContext(ToastContext)
   if (!context) {
-    throw new Error('useToast must be used within a ToastProvider')
+    throw new Error('useToast는 ToastProvider 안에서 사용할 수 있습니다')
   }
   return context
 }
