@@ -3,7 +3,6 @@
 import React, { ReactNode, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
-import { useDrawer } from '@/shared/providers/DrawerContext'
 import CloseIcon from '@/assets/CloseIcon.svg'
 import KakaoFillIcon from '@/assets/KakaoFillIcon.svg'
 import BellIcon from '@/assets/BellIcon.svg'
@@ -15,11 +14,11 @@ import { cn } from '@/shared/lib/utils'
 
 interface DrawerContentProps {
   children: ReactNode
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
 }
 
-function DrawerContent({ children }: DrawerContentProps) {
-  const { isOpen, setIsOpen } = useDrawer()
-
+function DrawerContent({ children, isOpen, setIsOpen }: DrawerContentProps) {
   const handleOverlayClick = () => {
     setIsOpen(false)
   }
@@ -41,22 +40,16 @@ function DrawerContent({ children }: DrawerContentProps) {
   )
 }
 
-function DrawerTrigger({ children }: { children: ReactNode }) {
-  const { setIsOpen } = useDrawer()
-
-  return (
-    <button onClick={() => setIsOpen(true)} className="cursor-pointer">
-      {children}
-    </button>
-  )
+interface DrawerMenuProps {
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
 }
 
-function DrawerMenu() {
-  const { setIsOpen } = useDrawer()
+function DrawerMenu({ isOpen, setIsOpen }: DrawerMenuProps) {
   const [isOn, setIsOn] = useState(false)
 
   return (
-    <DrawerContent>
+    <DrawerContent isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="typography-T4_semibold flex justify-between px-5">
         <div className="flex gap-2">
           <KakaoFillIcon />
@@ -97,9 +90,4 @@ function DrawerMenu() {
   )
 }
 
-const Drawer = Object.assign(DrawerContent, {
-  Trigger: DrawerTrigger,
-  Menu: DrawerMenu,
-})
-
-export default Drawer
+export default DrawerMenu
