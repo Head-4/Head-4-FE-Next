@@ -11,7 +11,7 @@ export default function LayoutWrapper({ children }: { children: ReactNode }) {
   return (
     <div
       className={cn(
-        'mx-auto flex min-h-screen max-w-[500px] flex-col px-5 shadow-2xl',
+        'mx-auto flex min-h-screen max-w-[500px] flex-col px-5 pb-21.5 shadow-2xl pt-[52px]',
         {
           'bg-gradient-univon': pathname === '/login',
           'bg-[#FAFAFA]': pathname === '/' || pathname === '/search',

@@ -9,16 +9,22 @@ import BellIcon from '@/assets/BellIcon.svg'
 import MenuIcon from '@/assets/MenuIcon.svg'
 import { useDrawer } from '@/widgets/Drawer/useDrawer'
 import DrawerMenu from '@/widgets/Drawer/Drawer'
+import { cn } from '@/shared/lib/utils'
 
 export default function Header() {
   const router = useRouter()
-  const pathName = usePathname()
-  const { title, showBackButton, showNavMenu } = getHeaderConfig(pathName)
+  const pathname = usePathname()
+  const { title, showBackButton, showNavMenu } = getHeaderConfig(pathname)
   const { isOpen, setIsOpen } = useDrawer()
 
   return (
     <>
-      <header className="flex items-center gap-2 py-3">
+      <header
+        className={cn(
+          'fixed top-0 left-0 flex w-full items-center gap-2 bg-white px-5 py-3 sm:left-[calc(50vw-250px)] sm:w-[500px]',
+          { 'bg-[#FAFAFA]': pathname === '/' || pathname === '/search' },
+        )}
+      >
         {showBackButton && (
           <button onClick={router.back}>
             <ArrowIcon />

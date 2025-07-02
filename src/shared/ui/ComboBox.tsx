@@ -1,58 +1,56 @@
 'use client'
 
-import { useState } from 'react'
 import {
   Combobox as HeadlessComboBox,
   ComboboxInput,
   ComboboxOption,
   ComboboxOptions,
 } from '@headlessui/react'
-import { UNIVERSITY_LIST } from '@/shared/lib/constants'
 import { cn } from '@/shared/lib/utils'
 import Separator from '@/shared/ui/Separator'
+import { useCombobox } from '@/shared/hooks/useCombobox'
 
-export default function Combobox() {
-  const [query, setQuery] = useState('')
-  const [selectedUniversity, setSelectedUniversity] = useState<string | null>(
-    null,
-  )
+interface ComboboxProps {
+  items: string[]
+  placeholder?: string
+  selectedItem: string | null
+  onItemSelectAction: (item: string | null) => void
+}
 
-  const filteredUniversities =
-    query === ''
-      ? []
-      : Array.from(UNIVERSITY_LIST).filter((univ) => univ.includes(query))
+export default function Combobox({
+  items,
+  placeholder = '검색',
+  selectedItem,
+  onItemSelectAction,
+}: ComboboxProps) {
+  const { setQuery, filteredItems } = useCombobox({ items })
 
   return (
-    <HeadlessComboBox
-      value={selectedUniversity}
-      onChange={setSelectedUniversity}
-    >
+    <HeadlessComboBox value={selectedItem} onChange={onItemSelectAction}>
       {({ open }) => (
         <div>
           <div className="relative">
             <ComboboxInput
               className={cn(
                 'typography-T3_semibold w-full rounded-xl border border-gray-lightGray bg-white px-5 py-4.75 text-black placeholder-[#ADADAD] focus:border-blue-primary focus:outline-none',
-                open &&
-                  filteredUniversities.length > 0 &&
-                  'rounded-b-none border-b-0',
+                open && filteredItems.length > 0 && 'rounded-b-none border-b-0',
               )}
-              displayValue={(university: string) => university}
+              displayValue={(item: string) => item}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="학교명 검색"
+              placeholder={placeholder}
             />
-            {open && filteredUniversities.length > 0 && (
+            {open && filteredItems.length > 0 && (
               <Separator className="absolute top-[calc(100%-1px)] left-1/2 w-[90%] -translate-x-1/2" />
             )}
           </div>
 
-          {open && filteredUniversities.length > 0 && (
+          {open && filteredItems.length > 0 && (
             <div className="w-full rounded-b-xl border border-t-0 border-blue-primary bg-white px-5">
               <ComboboxOptions className="custom-scroll max-h-60 overflow-auto">
-                {filteredUniversities.map((university) => (
+                {filteredItems.map((item) => (
                   <ComboboxOption
-                    key={university}
-                    value={university}
+                    key={item}
+                    value={item}
                     className={({ focus }) =>
                       cn(
                         'typography-T3_medium cursor-pointer py-5 select-none',
@@ -60,7 +58,7 @@ export default function Combobox() {
                       )
                     }
                   >
-                    {university}
+                    {item}
                   </ComboboxOption>
                 ))}
               </ComboboxOptions>

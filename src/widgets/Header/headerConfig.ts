@@ -23,9 +23,6 @@ export const getHeaderConfig = (pathname: string) => {
     '/setting/university': {
       title: '학교 설정',
     },
-    '/signup': {
-      title: '',
-    },
     '/login': {
       title: '',
       showBackButton: false,

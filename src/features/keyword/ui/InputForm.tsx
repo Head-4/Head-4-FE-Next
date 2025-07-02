@@ -9,7 +9,7 @@ export default function InputForm() {
 
   return (
     <div className="group">
-      <div className="mt-6 flex gap-3">
+      <div className="flex gap-3">
         <input
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
