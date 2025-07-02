@@ -64,6 +64,13 @@
         font-weight: 600;
     }
 
+    .typography-T3_bold {
+        font-weight: 700;
+        font-size: 1.125rem; /* 18px */
+        line-height: 1.5rem; /* 24px */
+
+    }
+
     .typography-T3_semibold {
         font-size: 1.125rem; /* 18px */
         line-height: 1.5rem; /* 24px */
@@ -154,4 +161,13 @@ body {
 button {
     display: flex;
     cursor: pointer;
+}
+
+.custom-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #f0f0f0;
+    border-radius: 12px;
 }
