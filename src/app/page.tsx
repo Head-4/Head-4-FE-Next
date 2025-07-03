@@ -3,11 +3,11 @@
 export default function Home() {
 
   return (
-    <main>
+    <>
       <h2 className="typography-T1 my-auto text-center text-[#b2b2b2]">
         곧 새로운 공지를 <br /> 가져올게요!
       </h2>
-    </main>
+    </>
   )
 }
 

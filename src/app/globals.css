@@ -146,6 +146,10 @@
     .bg-gradient-univon {
         background: linear-gradient(180deg, rgba(36, 106, 210, 0.20) -20.26%, rgba(36, 106, 210, 0.00) 38.63%), #FFF
     }
+
+    .bg-gradient-complete {
+        background: linear-gradient(180deg, rgba(36, 106, 210, 0) 60.66%, rgba(36, 106, 210, 0.2) 100%);
+    }
 }
 
 html, body {

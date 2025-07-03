@@ -23,6 +23,7 @@ export default function Header() {
         className={cn(
           'fixed top-0 left-0 flex w-full items-center gap-2 bg-white px-5 py-3 sm:left-[calc(50vw-250px)] sm:w-[500px]',
           { 'bg-[#FAFAFA]': pathname === '/' || pathname === '/search' },
+          { 'bg-transparent': pathname === '/login' },
         )}
       >
         {showBackButton && (
@@ -37,7 +38,7 @@ export default function Header() {
               <SearchIcon />
             </Link>
             <Link href="/notification">
-              <BellIcon className="w-6"/>
+              <BellIcon className="w-6" />
             </Link>
             <button onClick={() => setIsOpen(true)}>
               <MenuIcon />

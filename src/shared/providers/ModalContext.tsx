@@ -17,10 +17,11 @@ const ModalContext = createContext<ModalContextType | null>(null)
 interface ModalProviderProps {
   children: ReactNode
   variant?: ModalVariant
+  initialIsOpen?: boolean
 }
 
-function ModalProvider({ children, variant = 'modal' }: ModalProviderProps) {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+function ModalProvider({ children, variant = 'modal', initialIsOpen = false }: ModalProviderProps) {
+  const [isOpen, setIsOpen] = useState<boolean>(initialIsOpen)
 
   return (
     <ModalContext.Provider value={{ isOpen, setIsOpen, variant }}>
