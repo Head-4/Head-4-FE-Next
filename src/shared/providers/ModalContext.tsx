@@ -2,19 +2,28 @@
 
 import React, { createContext, ReactNode, useContext, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { cn } from '@/shared/lib/utils'
+
+type ModalVariant = 'modal' | 'bottomSheet'
 
 interface ModalContextType {
   isOpen: boolean
+  variant: ModalVariant
   setIsOpen: (isOpen: boolean) => void
 }
 
 const ModalContext = createContext<ModalContextType | null>(null)
 
-function ModalProvider({ children }: { children: ReactNode }) {
+interface ModalProviderProps {
+  children: ReactNode
+  variant?: ModalVariant
+}
+
+function ModalProvider({ children, variant = 'modal' }: ModalProviderProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
-    <ModalContext.Provider value={{ isOpen, setIsOpen }}>
+    <ModalContext.Provider value={{ isOpen, setIsOpen, variant }}>
       {children}
     </ModalContext.Provider>
   )
@@ -45,22 +54,6 @@ function ModalCloseButton({ children }: { children: ReactNode }) {
   )
 }
 
-function ModalHeader({ children }: { children: ReactNode }) {
-  return <div className="mb-4 text-lg font-semibold">{children}</div>
-}
-
-function ModalTitle({ children }: { children: ReactNode }) {
-  return <h2 className="mb-2 text-xl font-bold">{children}</h2>
-}
-
-function ModalDescription({ children }: { children: ReactNode }) {
-  return <p className="text-gray-600">{children}</p>
-}
-
-function ModalFooter({ children }: { children: ReactNode }) {
-  return <div className="mt-6 flex justify-end gap-2">{children}</div>
-}
-
 function ModalContent({ children }: { children: ReactNode }) {
   const context = useContext(ModalContext)
   if (!context) throw new Error('ModalContent은 Modal안에 들어가야합니다.')
@@ -72,14 +65,27 @@ function ModalContent({ children }: { children: ReactNode }) {
     }
   }
 
+  const modalStyles = {
+    modal: 'flex items-center justify-center',
+    bottomSheet: 'flex items-end justify-center',
+  }
+
+  const contentStyles = {
+    modal:
+      'relative mx-8 flex w-full flex-col items-center rounded-[20px] bg-white p-6 px-6 pt-10 pb-7',
+    bottomSheet:
+      'relative flex w-full flex-col items-center rounded-t-3xl bg-white p-5 pt-6 pb-21.5',
+  }
+
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      className={cn(
+        'fixed inset-0 z-50 mx-auto max-w-[500px] bg-black/50',
+        modalStyles[context.variant],
+      )}
       onClick={handleBackgroundClick}
     >
-      <div className="relative w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
-        {children}
-      </div>
+      <div className={contentStyles[context.variant]}>{children}</div>
     </div>,
     document.getElementById('modal-root') as HTMLElement,
   )
@@ -88,11 +94,7 @@ function ModalContent({ children }: { children: ReactNode }) {
 const Modal = Object.assign(ModalProvider, {
   Trigger: ModalTrigger,
   CloseButton: ModalCloseButton,
-  Header: ModalHeader,
   Content: ModalContent,
-  Title: ModalTitle,
-  Description: ModalDescription,
-  Footer: ModalFooter,
 })
 
 export default Modal

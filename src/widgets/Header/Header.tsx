@@ -37,7 +37,7 @@ export default function Header() {
               <SearchIcon />
             </Link>
             <Link href="/notification">
-              <BellIcon />
+              <BellIcon className="w-6"/>
             </Link>
             <button onClick={() => setIsOpen(true)}>
               <MenuIcon />

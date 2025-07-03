@@ -61,7 +61,7 @@ function DrawerMenu({ isOpen, setIsOpen }: DrawerMenuProps) {
       </div>
       <ul className="typography-B1_semibold mt-6">
         <li className="flex gap-3 px-5 py-4">
-          <BellIcon color="#DDDDDD" />
+          <BellIcon color="#DDDDDD" className="w-6"/>
           키워드 알림
           <ToggleButton isOn={isOn} toggleClick={setIsOn} className="ml-auto" />
         </li>

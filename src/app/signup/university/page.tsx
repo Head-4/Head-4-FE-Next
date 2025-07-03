@@ -16,17 +16,18 @@ export default function Page() {
 
   return (
     <>
-      <h2 className="typography-H3 mt-4.5 mb-8">
-        공지를 받아 볼 <br /> 학교를 선택해 주세요
-      </h2>
-      <Combobox
-        items={Array.from(UNIVERSITY_LIST)}
-        placeholder="학교명 검색"
-        selectedItem={selectedUniversity}
-        onItemSelectAction={setSelectedUniversity}
-      />
+      <div className="flex-1">
+        <h2 className="typography-H3 mt-4.5 mb-8">
+          공지를 받아 볼 <br /> 학교를 선택해 주세요
+        </h2>
+        <Combobox
+          items={Array.from(UNIVERSITY_LIST)}
+          placeholder="학교명 검색"
+          selectedItem={selectedUniversity}
+          onItemSelectAction={setSelectedUniversity}
+        />
+      </div>
       <Button
-        className="mt-auto"
         onClick={handleSubmit}
         disabled={!selectedUniversity}
       >
