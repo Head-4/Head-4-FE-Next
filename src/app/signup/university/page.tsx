@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Combobox from '@/shared/ui/ComboBox'
 import Button from '@/shared/ui/Button'
-import { UNIVERSITY_LIST } from '@/shared/lib/constants'
+import { UNIVERSITY_LIST } from '@/shared/lib/constants/constants'
 
 export default function Page() {
   const [selectedUniversity, setSelectedUniversity] = useState<string | null>(

@@ -1,21 +1,43 @@
-import {MutationCache, QueryCache, QueryClient} from "@tanstack/react-query";
+import {
+  isServer,
+  QueryClient,
+  defaultShouldDehydrateQuery,
+} from '@tanstack/react-query'
 
-export const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-      retry: 0,
+const DEFAULT_STALE_TIME = 60 * 1000
+
+export const queryClientSingleton = (function () {
+  let instance: QueryClient | undefined = undefined
+
+  function createQueryClientInstance() {
+    return new QueryClient({
+      defaultOptions: {
+        queries: {
+          staleTime: DEFAULT_STALE_TIME,
+          refetchOnWindowFocus: false,
+          refetchOnReconnect: false,
+          retry: 0,
+        },
+        dehydrate: {
+          shouldDehydrateQuery: (query) =>
+            defaultShouldDehydrateQuery(query) ||
+            query.state.status === 'pending',
+        },
+      },
+    })
+  }
+
+  return {
+    getInstance: function (): QueryClient {
+      if (isServer) {
+        return createQueryClientInstance()
+      }
+
+      if (!instance) {
+        instance = createQueryClientInstance()
+      }
+
+      return instance
     },
-  },
-  // queryCache: new QueryCache({
-  //   onError: (error) => {
-  //     console.log(error.message, "query");
-  //   }
-  // }),
-  // mutationCache: new MutationCache({
-  //   onError: (error) => {
-  //     console.log(error.message, "mutation");
-  //   }
-  // })
-});
+  }
+})()

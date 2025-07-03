@@ -1,7 +1,7 @@
 'use client'
 
 import Combobox from '@/shared/ui/ComboBox'
-import { UNIVERSITY_LIST } from '@/shared/lib/constants'
+import { UNIVERSITY_LIST } from '@/shared/lib/constants/constants'
 import { useState } from 'react'
 import Button from '@/shared/ui/Button'
 import { useToast } from '@/shared/providers/ToastContext'
