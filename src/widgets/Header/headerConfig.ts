@@ -27,6 +27,10 @@ export const getHeaderConfig = (pathname: string) => {
       title: '',
       showBackButton: false,
     },
+    '/signup/complete': {
+      title: '',
+      showBackButton: false,
+    },
   }
 
   return { ...defaultConfig, ...configMap[pathname] }
