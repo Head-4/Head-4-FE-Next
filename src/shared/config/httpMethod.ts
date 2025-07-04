@@ -30,7 +30,7 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true
 
-      const currentToken = originalRequest.headers.Authorization.split(' ')[1]
+      const currentToken = originalRequest.headers.Authorization?.split(' ')[1]
 
       const newTokens = await refreshAuth(currentToken)
 
@@ -45,16 +45,15 @@ axiosInstance.interceptors.response.use(
 
 export async function httpMethod<Data>(
   url: string,
-  tokens: string,
+  token: string,
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
-  config?: AxiosRequestConfig,
+  body?: object,
 ): Promise<Data | undefined> {
   try {
     const response = await axiosInstance({
       url,
       method,
-      ...createConfig(tokens, config?.data),
-      ...config,
+      ...createConfig(token, body),
     })
 
     return response.data as Data
