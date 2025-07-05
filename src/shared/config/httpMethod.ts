@@ -13,7 +13,7 @@ export function createConfig<Body extends object>(
   }
 }
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   withCredentials: true,
 })
