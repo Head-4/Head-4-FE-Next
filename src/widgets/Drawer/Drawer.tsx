@@ -11,6 +11,7 @@ import PinIcon from '@/assets/PinIcon.svg'
 import ArrowIcon from '@/assets/ArrowIcon.svg'
 import ToggleButton from '@/shared/ui/ToggleButton'
 import { cn } from '@/shared/lib/utils'
+import { useUserEmailQuery } from '@/features/user/useUserEmailQuery'
 
 interface DrawerContentProps {
   children: ReactNode
@@ -47,13 +48,14 @@ interface DrawerMenuProps {
 
 function DrawerMenu({ isOpen, setIsOpen }: DrawerMenuProps) {
   const [isOn, setIsOn] = useState(false)
+  const { data: userEmail } = useUserEmailQuery()
 
   return (
     <DrawerContent isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="typography-T4_semibold flex justify-between px-5">
         <div className="flex gap-2">
           <KakaoFillIcon />
-          qazyhn@naver.com
+          {userEmail.data}
         </div>
         <button onClick={() => setIsOpen(false)}>
           <CloseIcon />
@@ -61,7 +63,7 @@ function DrawerMenu({ isOpen, setIsOpen }: DrawerMenuProps) {
       </div>
       <ul className="typography-B1_semibold mt-6">
         <li className="flex gap-3 px-5 py-4">
-          <BellIcon color="#DDDDDD" className="w-6"/>
+          <BellIcon color="#DDDDDD" className="w-6" />
           키워드 알림
           <ToggleButton isOn={isOn} toggleClick={setIsOn} className="ml-auto" />
         </li>
