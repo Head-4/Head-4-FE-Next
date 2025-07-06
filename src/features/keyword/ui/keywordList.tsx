@@ -1,16 +1,16 @@
 'use client'
 
-import { useKeyword } from '@/features/keyword/hooks/useKeyword'
 import Chip from '@/shared/ui/Chip'
+import { useUserKeywordListQuery } from '@/features/keyword/hooks/useUserKeywordListQuery'
 
 export default function KeywordList() {
-  const { keywordList } = useKeyword()
+  const { data } = useUserKeywordListQuery()
 
   return (
     <section className="mt-9 flex flex-wrap gap-3">
-      {Array.from(keywordList).map((keyword) => (
-        <Chip key={keyword.id} onClick={() => {}}>
-          {keyword.value}
+      {data.data.map((keyword) => (
+        <Chip key={keyword.notifyId} onClick={() => {}}>
+          {keyword.keyword}
         </Chip>
       ))}
     </section>

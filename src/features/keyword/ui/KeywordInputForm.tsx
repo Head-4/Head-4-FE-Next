@@ -4,7 +4,7 @@ import CrossFillIcon from '@/assets/CrossFillIcon.svg'
 import { cn } from '@/shared/lib/utils'
 import { useKeywordInput } from '@/features/keyword/hooks/useKeywordInput'
 
-export default function InputForm() {
+export default function KeywordInputForm() {
   const { keyword, setKeyword, error, handleAddClick } = useKeywordInput()
 
   return (
