@@ -20,7 +20,7 @@ export interface GetUserUniversityResponse {
 
 const getUserUniversity = async () => {
   const response = await httpMethod<GetUserUniversityResponse>(
-    END_POINT.USER_UNIVERSITY,
+    END_POINT.GET_USER_UNIVERSITY,
     process.env.NEXT_PUBLIC_BEARER_TOKEN!,
     'GET',
   )

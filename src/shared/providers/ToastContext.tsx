@@ -29,7 +29,7 @@ const ToastContext = createContext<ToastContextType | null>(null)
 
 export function ToastProvider({ children }: ToastProviderProps) {
   const [toasts, setToasts] = useState<Toast[]>([])
-  console.log('gg')
+
   const addToast = useCallback((message: string, type: 'success' | 'error') => {
     const id = Math.random().toString(36).slice(2)
     setToasts((prev) => [...prev, { id, message, type }])
