@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useArticlesQuery } from '@/features/article/hooks/useArticlesQuery'
 import { useInView } from 'react-intersection-observer'
-import Article from '@/features/article/ui/Article'
+import ArticleItem from '@/features/article/ui/ArticleItem'
 import KeywordList from '@/features/keyword/ui/KeywordList'
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage()
     }
-  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage])
+  }, [inView])
 
   return (
     <>
@@ -29,16 +29,16 @@ export default function Home() {
           곧 새로운 공지를 <br /> 가져올게요!
         </h2>
       ) : (
-        <ul className="mt-5 space-y-3">
-          {data.pages.map((page) =>
-            page.data.articles.map((article) => (
-              <li key={article.id}>
-                <Article article={article} />
-              </li>
-            )),
-          )}
+        <>
+          <ul className="mt-5 space-y-3">
+            {data.pages.map((page) =>
+              page.data.articles.map((article) => (
+                <ArticleItem key={article.id} article={article} />
+              )),
+            )}
+          </ul>
           <div ref={ref} />
-        </ul>
+        </>
       )}
     </>
   )

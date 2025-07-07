@@ -1,37 +1,37 @@
+'use client'
+
+import { useInView } from 'react-intersection-observer'
+import { useEffect } from 'react'
+import { useNotificationsQuery } from '@/features/notification/hooks/useNotificationsQuery'
+import NotificationItem from '@/features/notification/ui/NotificationItem'
+
 export default function Page() {
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
+    useNotificationsQuery()
+  const { ref, inView } = useInView()
+
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage()
+    }
+  }, [inView])
+
   return (
     <>
       <ul className="mt-4">
-        <li>
-          <a className="block space-y-1 rounded-xl border border-white bg-white py-5">
-            <div className="flex justify-between">
-              <p className="typography-B1_semibold text-blue-primary">
-                '장학금' 새로운 공지
-              </p>
-              <p className="typography-B3_medium text-[#C0C0C0]">2분 전</p>
-            </div>
-            <p className="typography-B1_medium text-gray-600">
-              [학생복지팀] 한국장학재단 2025년 1학기 푸른등대 기부장학금 신규
-              장학생 신청 안내
-            </p>
-          </a>
-        </li>
-        <li>
-          <a className="block space-y-1 rounded-xl border border-white bg-white py-5">
-            <div className="flex justify-between">
-              <p className="typography-B1_semibold text-blue-primary">
-                '장학금' 새로운 공지
-              </p>
-              <p className="typography-B3_medium text-[#C0C0C0]">2분 전</p>
-            </div>
-            <p className="typography-B1_medium text-gray-600">
-              [학생복지팀] 한국장학재단 2025년 1학기 푸른등대 기부장학금 신규
-              장학생 신청 안내
-            </p>
-          </a>
-        </li>
+        {data.pages.map((page) =>
+          page.data.pushLogs.map((notification) => (
+            <NotificationItem
+              key={notification.pushId}
+              notification={notification}
+            />
+          )),
+        )}
       </ul>
-      <h2 className="typography-B2_medium my-12 text-center text-gray-400">
+      <h2
+        ref={ref}
+        className="typography-B2_medium my-12 text-center text-gray-400"
+      >
         모든 알림은 90일간 보관돼요.
       </h2>
     </>
