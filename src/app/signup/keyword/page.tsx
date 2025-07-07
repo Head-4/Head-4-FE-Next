@@ -1,6 +1,6 @@
 'use client'
 
-import KeywordList from '@/features/keyword/ui/keywordList'
+import KeywordChipList from '@/features/keyword/ui/KeywordChipList'
 import KeywordInputForm from '@/features/keyword/ui/KeywordInputForm'
 import Button from '@/shared/ui/Button'
 import Modal from '@/shared/providers/ModalContext'
@@ -14,7 +14,7 @@ export default function Page() {
           보고 싶은 공지의 <br /> 키워드를 입력해 주세요
         </h2>
         <KeywordInputForm />
-        <KeywordList />
+        <KeywordChipList />
       </div>
       <Modal variant="bottomSheet">
         <Modal.Trigger>

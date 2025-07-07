@@ -1,5 +1,5 @@
 import KeywordInputForm from '@/features/keyword/ui/KeywordInputForm'
-import KeywordList from '@/features/keyword/ui/keywordList'
+import KeywordChipList from '@/features/keyword/ui/KeywordChipList'
 import { ServerFetchBoundary } from '@/shared/lib/ServerFetchBoundary'
 import { Suspense } from 'react'
 import { userKeywordListQueryOptions } from '@/features/keyword/hooks/useUserKeywordListQuery'
@@ -10,7 +10,7 @@ export default function Page() {
       <Suspense fallback={<div>잠시대기</div>}>
         <ServerFetchBoundary fetchOptions={userKeywordListQueryOptions()}>
           <KeywordInputForm />
-          <KeywordList />
+          <KeywordChipList />
         </ServerFetchBoundary>
       </Suspense>
     </div>
