@@ -7,7 +7,7 @@ interface ArticleItemProps {
 
 export default function ArticleItem({ article }: ArticleItemProps) {
   return (
-    <li>
+    <li className="mb-3">
       <a
         href={article.url}
         className="block space-y-1 rounded-xl border border-white bg-white px-5 py-3.75 hover:border-blue-primary active:border-blue-primary"
