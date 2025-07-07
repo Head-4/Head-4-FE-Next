@@ -8,7 +8,10 @@ class FormValidator {
   private rules: Record<string, ValidationRule[]> = {}
 
   addField(fieldName: string, rules: ValidationRule[]): FormValidator {
-    this.rules[fieldName] = rules
+    if (!this.rules[fieldName]) {
+      this.rules[fieldName] = []
+    }
+    this.rules[fieldName].push(...rules)
     return this
   }
 
@@ -54,11 +57,41 @@ export class ValidatorBuilder {
   minLength(
     fieldName: string,
     min: number,
-    message: string = `최소 입력 글자는 ${min}글자 입니다.`,
+    message: string = `최소 ${min}글자 이상 입력해주세요`,
   ): ValidatorBuilder {
     this.validator.addField(fieldName, [
       {
-        validate: (value) => value?.length >= min,
+        validate: (value) => value.length >= min,
+        errorMessage: message,
+      },
+    ])
+    return this
+  }
+
+  noDuplicate(
+    fieldName: string,
+    existingValues: Array<{ notifyId: number; keyword: string }>,
+    message: string = '같은 키워드는 추가할 수 없어요',
+  ): ValidatorBuilder {
+    this.validator.addField(fieldName, [
+      {
+        validate: (value) =>
+          !existingValues?.some((item) => item.keyword === value),
+        errorMessage: message,
+      },
+    ])
+    return this
+  }
+
+  maxCount(
+    fieldName: string,
+    currentCount: number,
+    maxLimit: number,
+    message: string = `최대 ${maxLimit}개까지 추가할 수 있어요`,
+  ): ValidatorBuilder {
+    this.validator.addField(fieldName, [
+      {
+        validate: () => currentCount < maxLimit,
         errorMessage: message,
       },
     ])
