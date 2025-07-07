@@ -1,10 +1,22 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import SearchIcon from '@/assets/SearchIcon.svg'
 
 export default function Searchbar() {
+  const router = useRouter()
   const [search, setSearch] = useState<string>('')
+  
+  useEffect(() => {
+    const debounceTimer = setTimeout(() => {
+      if (search.trim()) {
+        router.push(`/search?keyword=${encodeURIComponent(search.trim())}`)
+      }
+    }, 300)
+
+    return () => clearTimeout(debounceTimer)
+  }, [search, router])
 
   return (
     <div className="group flex gap-2 rounded-xl border border-[#E9E9E9] px-5 py-4">
