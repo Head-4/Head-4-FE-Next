@@ -5,4 +5,5 @@ export const END_POINT = {
   GET_USER_KEYWORD_LIST: `/api/v1/user/keywords`,
   POST_USER_KEYWORD_LIST: (keyword: string) => `/api/v1/user/add/keyword/${keyword}`,
   GET_USER_EMAIL: `/api/v1/user/email`,
+  GET_ARTICLES: (cursor: number, keyword: string) => `/api/v1/article/page/${cursor}/${keyword}`,
 }
