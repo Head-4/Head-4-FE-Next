@@ -3,6 +3,7 @@ import { QUERY_KEY } from '@/shared/lib/constants/queryKey'
 import { queryClientSingleton } from '@/shared/config/queryClient'
 import { postUserKeywordList } from '@/features/keyword/api/postUserKeywordList'
 import { deleteUserKeyword } from '@/features/keyword/api/deleteUserKeyword'
+import { useToast } from '@/shared/providers/ToastContext'
 
 interface ErrorResponse {
   code: number
@@ -20,7 +21,9 @@ type KeywordMutationParams =
   | { method: 'POST'; keyword: string }
   | { method: 'DELETE'; notifyId: string }
 
-const userKeywordListMutationOptions = (): UseMutationOptions<
+const userKeywordListMutationOptions = (
+  toast: ReturnType<typeof useToast>,
+): UseMutationOptions<
   KeywordMutationResponse,
   Error,
   KeywordMutationParams
@@ -38,14 +41,17 @@ const userKeywordListMutationOptions = (): UseMutationOptions<
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.USER_KEYWORD_LIST] })
+      toast.success('성공적으로 변경되었어요!')
       console.log('keyword mutation success: ', data)
     },
     onError: (error) => {
+      toast.error('잠시 후에 다시 시도해 주세요')
       console.error('keyword mutation error: ', error)
     },
   }
 }
 
 export const useUserKeywordMutation = () => {
-  return useMutation(userKeywordListMutationOptions())
+  const toast = useToast()
+  return useMutation(userKeywordListMutationOptions(toast))
 }

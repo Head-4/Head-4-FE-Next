@@ -14,7 +14,7 @@ interface ComboboxProps {
   items: string[]
   placeholder?: string
   selectedItem: string | null
-  onItemSelectAction: (item: string | null) => void
+  onItemSelectAction: (item: string) => void
 }
 
 export default function Combobox({

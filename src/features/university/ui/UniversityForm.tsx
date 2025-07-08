@@ -7,14 +7,13 @@ import { useState } from 'react'
 import { useUserUniversityMutation } from '@/features/university/hooks/useUserUniversityMutation'
 
 export const UniversityForm = () => {
-  const [selectedUniversity, setSelectedUniversity] = useState<string | null>(
-    null,
-  )
+  const [selectedUniversity, setSelectedUniversity] = useState<string>('')
   const mutation = useUserUniversityMutation()
 
   const handleSave = () => {
     if (selectedUniversity) {
       mutation.mutate(selectedUniversity)
+      setSelectedUniversity('')
     }
   }
 

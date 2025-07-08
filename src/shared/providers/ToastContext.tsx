@@ -9,6 +9,7 @@ import {
   useState,
 } from 'react'
 import { createPortal } from 'react-dom'
+import { cn } from '@/shared/lib/utils'
 
 interface Toast {
   id: string
@@ -56,11 +57,16 @@ export function ToastProvider({ children }: ToastProviderProps) {
       {children}
       {toasts.length > 0 &&
         createPortal(
-          <div className="fixed top-4 right-4 z-50 flex flex-col gap-2">
+          <div className="typography-T4_semibold fixed bottom-[162px] left-0 z-50 flex w-full flex-col gap-2 sm:left-[calc(50vw-250px)] sm:w-[500px]">
             {toasts.map((toast) => (
               <div
                 key={toast.id}
-                className={`rounded-md px-4 py-2 text-white shadow-lg ${toast.type === 'success' ? 'bg-green-500' : 'bg-red-500'}`}
+                className={cn(
+                  `mx-5 rounded-xl py-4.5 text-center`,
+                  toast.type === 'success'
+                    ? 'bg-[#F0FAF2] text-[#528B5D]'
+                    : 'bg-[#FFEFF0] text-[#BD0000]',
+                )}
               >
                 {toast.message}
               </div>
