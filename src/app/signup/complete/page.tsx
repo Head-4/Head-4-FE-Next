@@ -1,10 +1,11 @@
 import CompleteImage from '@/assets/CompleteImage.svg'
 import Button from '@/shared/ui/Button'
+import Link from 'next/link'
 
 export default function Page() {
   return (
     <>
-      <div className="mt-[120px] flex flex-1 flex-col items-center">
+      <div className="mt-[66px] flex flex-1 flex-col items-center">
         <div className="mb-15 space-y-6">
           <h1 className="typography-H1">환영합니다!</h1>
           <p className="typography-T3_medium text-gray-600">
@@ -15,7 +16,9 @@ export default function Page() {
         </div>
         <CompleteImage />
       </div>
-      <Button>확인</Button>
+      <Link href="/">
+        <Button>확인</Button>
+      </Link>
     </>
   )
 }

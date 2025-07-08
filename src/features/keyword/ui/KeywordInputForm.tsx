@@ -5,11 +5,11 @@ import { cn } from '@/shared/lib/utils'
 import { useKeywordInput } from '@/features/keyword/hooks/useKeywordInput'
 
 export default function KeywordInputForm() {
-  const { keyword, setKeyword, error, handleAddClick } = useKeywordInput()
+  const { keyword, setKeyword, error, handleSubmit } = useKeywordInput()
 
   return (
     <div className="group">
-      <div className="flex gap-3">
+      <form onSubmit={handleSubmit} className="flex gap-3">
         <input
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
@@ -20,13 +20,13 @@ export default function KeywordInputForm() {
           placeholder="키워드 입력"
         />
         <button
-          onClick={handleAddClick}
+          type="submit"
           className="flex shrink-0 flex-col items-center justify-center text-[#DBDBDB] group-focus-within:text-blue-primary"
         >
           <CrossFillIcon className="h-8 w-8 rotate-45" />
           <div className="typography-B3_medium mt-0.5">추가하기</div>
         </button>
-      </div>
+      </form>
       <p
         className={cn(
           'typography-B2_medium mt-3 text-[#ADADAD]',

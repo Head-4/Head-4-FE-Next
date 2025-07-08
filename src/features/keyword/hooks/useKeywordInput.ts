@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { ValidatorBuilder } from '@/shared/lib/ValidatorBuilder'
 import { useUserKeywordMutation } from '@/features/keyword/hooks/useUserKeywordMutation'
 import { useUserKeywordListQuery } from '@/features/keyword/hooks/useUserKeywordListQuery'
@@ -15,7 +15,8 @@ export function useKeywordInput() {
     .noDuplicate('keyword', data?.data ?? [])
     .build()
 
-  const handleAddClick = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     const errors = validator.validate({ keyword })
 
     if (errors.keyword) {
@@ -27,5 +28,5 @@ export function useKeywordInput() {
     }
   }
 
-  return { keyword, setKeyword, error, handleAddClick }
+  return { keyword, setKeyword, error, handleSubmit }
 }
