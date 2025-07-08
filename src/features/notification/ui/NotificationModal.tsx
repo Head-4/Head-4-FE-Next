@@ -4,6 +4,8 @@ import Button from '@/shared/ui/Button'
 import Modal from '@/shared/providers/ModalContext'
 import BellIcon from '@/assets/BellIcon.svg'
 import { useRouter } from 'next/navigation'
+import { handleNotificationPermission } from '@/shared/config/firebase'
+import { useNotificationPermissionMutation } from '@/features/notification/hooks/useNotificationPermissionMutation'
 
 interface NotificationModalProps {
   triggerText: string
@@ -13,6 +15,23 @@ export default function NotificationModal({
   triggerText,
 }: NotificationModalProps) {
   const router = useRouter()
+  const mutation = useNotificationPermissionMutation()
+
+  const onAllowClick = async () => {
+    const { result, userFcmToken } = await handleNotificationPermission()
+
+    if (result && userFcmToken) {
+      const patchResult = await mutation.mutateAsync({
+        action: 'updateUserFcmToken',
+        fcmToken: userFcmToken,
+      })
+      if (patchResult.success)
+        mutation.mutate({
+          action: 'updateUserNotificationSetting',
+          setting: true,
+        })
+    }
+  }
 
   return (
     <Modal variant="bottomSheet">
@@ -30,7 +49,7 @@ export default function NotificationModal({
           포함된 공지의 알림을 받을 수 있어요
         </p>
         <div className="w-full space-y-3">
-          <Button>알림 받기</Button>
+          <Button onClick={onAllowClick}>알림 받기</Button>
           <Button
             onClick={() => router.push('/signup/complete')}
             variant="outline"

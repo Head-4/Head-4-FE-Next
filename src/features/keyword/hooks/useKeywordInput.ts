@@ -22,7 +22,7 @@ export function useKeywordInput() {
     if (errors.keyword) {
       setError(errors.keyword[0])
     } else {
-      mutation.mutate({ method: 'POST', keyword: keyword })
+      mutation.mutate({ action: 'updateUserKeywordList', keyword: keyword })
       setKeyword('')
       setError(null)
     }

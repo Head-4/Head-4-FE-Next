@@ -11,4 +11,7 @@ export const END_POINT = {
   GET_ARTICLES: (cursor: number, keyword: string) =>
     `/api/v1/article/page/${cursor}/${keyword}`,
   GET_NOTIFICATIONS: (cursor: number) => `/api/v1/user/notify/page/${cursor}`,
+  PATCH_USER_FCM_TOKEN: (token: string) => `/api/v1/user/fcm/${token}`,
+  PATCH_USER_NOTIFICATION_SETTING: (setting: boolean) =>
+    `/api/v1/user/notify/${setting}`,
 }

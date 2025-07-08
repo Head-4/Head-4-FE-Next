@@ -15,7 +15,7 @@ export default function KeywordChipList() {
           key={keyword.notifyId}
           onClick={() =>
             mutation.mutate({
-              method: 'DELETE',
+              action: 'deleteUserKeyword',
               notifyId: String(keyword.notifyId),
             })
           }

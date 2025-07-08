@@ -18,8 +18,8 @@ export interface KeywordMutationResponse {
 }
 
 type KeywordMutationParams =
-  | { method: 'POST'; keyword: string }
-  | { method: 'DELETE'; notifyId: string }
+  | { action: 'updateUserKeywordList'; keyword: string }
+  | { action: 'deleteUserKeyword'; notifyId: string }
 
 const userKeywordListMutationOptions = (
   toast: ReturnType<typeof useToast>,
@@ -32,10 +32,10 @@ const userKeywordListMutationOptions = (
 
   return {
     mutationFn: (params: KeywordMutationParams) => {
-      switch (params.method) {
-        case 'POST':
+      switch (params.action) {
+        case 'updateUserKeywordList':
           return postUserKeywordList(params.keyword)
-        case 'DELETE':
+        case 'deleteUserKeyword':
           return deleteUserKeyword(params.notifyId)
       }
     },
