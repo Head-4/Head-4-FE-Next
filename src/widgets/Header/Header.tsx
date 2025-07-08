@@ -8,8 +8,8 @@ import SearchIcon from '@/assets/SearchIcon.svg'
 import BellIcon from '@/assets/BellIcon.svg'
 import MenuIcon from '@/assets/MenuIcon.svg'
 import { useDrawer } from '@/widgets/Drawer/useDrawer'
-import DrawerMenu from '@/widgets/Drawer/Drawer'
 import { cn } from '@/shared/lib/utils'
+import Drawer from '@/widgets/Drawer/Drawer'
 
 export default function Header() {
   const router = useRouter()
@@ -43,7 +43,7 @@ export default function Header() {
             <button onClick={() => setIsOpen(true)}>
               <MenuIcon />
             </button>
-            <DrawerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+            <Drawer isOpen={isOpen} setIsOpen={setIsOpen} />
           </div>
         )}
       </header>

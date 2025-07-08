@@ -2,6 +2,7 @@ import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { queryClientSingleton } from '@/shared/config/queryClient'
 import { patchUserFcmToken } from '@/features/notification/api/patchUserFcmToken'
 import { patchUserNotificationSetting } from '@/features/notification/api/patchUserNotificationSetting'
+import { QUERY_KEY } from '@/shared/lib/constants/queryKey'
 
 interface ErrorResponse {
   code: number
@@ -36,6 +37,7 @@ const notificationPermissionMutationOptions = (): UseMutationOptions<
       }
     },
     onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.USER_NOTIFICATION_STATUS]})
       console.log('notification permission mutation success: ', data)
     },
     onError: (error) => {

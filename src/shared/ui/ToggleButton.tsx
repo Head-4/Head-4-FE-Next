@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from 'react'
 
 interface ToggleButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isOn: boolean
-  toggleClick: React.Dispatch<React.SetStateAction<boolean>>
+  toggleClick: () => void
 }
 
 export default function ToggleButton({
@@ -14,7 +14,7 @@ export default function ToggleButton({
 }: ToggleButtonProps) {
   return (
     <button
-      onClick={() => toggleClick((prev) => !prev)}
+      onClick={toggleClick}
       className={cn(
         'typography-B3_semibold relative flex h-[32px] w-[64px] items-center justify-between rounded-3xl border px-2 py-1.5 transition-colors duration-200',
         isOn

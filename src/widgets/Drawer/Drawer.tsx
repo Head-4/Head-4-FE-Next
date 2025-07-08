@@ -1,6 +1,6 @@
 'use client'
 
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import CloseIcon from '@/assets/CloseIcon.svg'
@@ -12,6 +12,10 @@ import ArrowIcon from '@/assets/ArrowIcon.svg'
 import ToggleButton from '@/shared/ui/ToggleButton'
 import { cn } from '@/shared/lib/utils'
 import { useUserEmailQuery } from '@/features/user/useUserEmailQuery'
+import { useUserNotificationStatusQuery } from '@/features/notification/hooks/useUserNotificationStatusQuery'
+import { useUserFcmTokenQuery } from '@/features/notification/hooks/useUserFcmTokenQuery'
+import { useNotificationHandler } from '@/features/notification/hooks/useNotificationHandler'
+import { useNotificationPermissionMutation } from '@/features/notification/hooks/useNotificationPermissionMutation'
 
 interface DrawerContentProps {
   children: ReactNode
@@ -41,14 +45,31 @@ function DrawerContent({ children, isOpen, setIsOpen }: DrawerContentProps) {
   )
 }
 
-interface DrawerMenuProps {
+interface DrawerProps {
   isOpen: boolean
   setIsOpen: (isOpen: boolean) => void
 }
 
-function DrawerMenu({ isOpen, setIsOpen }: DrawerMenuProps) {
-  const [isOn, setIsOn] = useState(false)
+function Drawer({ isOpen, setIsOpen }: DrawerProps) {
   const { data: userEmail } = useUserEmailQuery()
+  const { data: userFcmToken } = useUserFcmTokenQuery()
+  const { data: userNotificationStatus } = useUserNotificationStatusQuery()
+  const mutation = useNotificationPermissionMutation()
+  const { handlePermission } = useNotificationHandler()
+
+  const toggleClick = async () => {
+    if (userNotificationStatus.data) {
+      mutation.mutate({ action: 'updateUserNotificationSetting', setting: false } )
+    } else {
+      if (Notification.permission === 'granted' && userFcmToken.data) {
+        mutation.mutate({ action: 'updateUserNotificationSetting', setting: true } )
+      } else if (Notification.permission === 'denied') {
+        alert('브라우저 알림 권한을 허용해주세요!')
+      } else {
+        await handlePermission()
+      }
+    }
+  }
 
   return (
     <DrawerContent isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -65,7 +86,11 @@ function DrawerMenu({ isOpen, setIsOpen }: DrawerMenuProps) {
         <li className="flex gap-3 px-5 py-4">
           <BellIcon color="#DDDDDD" className="w-6" />
           키워드 알림
-          <ToggleButton isOn={isOn} toggleClick={setIsOn} className="ml-auto" />
+          <ToggleButton
+            isOn={userNotificationStatus.data}
+            toggleClick={toggleClick}
+            className="ml-auto"
+          />
         </li>
         <li className="hover:bg-[#E9E9E940] active:bg-[#E9E9E940]">
           <Link href="/setting/university" className="flex gap-3 px-5 py-4">
@@ -92,4 +117,4 @@ function DrawerMenu({ isOpen, setIsOpen }: DrawerMenuProps) {
   )
 }
 
-export default DrawerMenu
+export default Drawer

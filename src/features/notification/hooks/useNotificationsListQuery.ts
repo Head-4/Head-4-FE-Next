@@ -48,6 +48,6 @@ export const notificationsQueryOptions = (): UseSuspenseInfiniteQueryOptions<
   initialPageParam: 0,
 })
 
-export function useNotificationsQuery() {
+export function useNotificationsListQuery() {
   return useSuspenseInfiniteQuery(notificationsQueryOptions())
 }

@@ -4,8 +4,7 @@ import Button from '@/shared/ui/Button'
 import Modal from '@/shared/providers/ModalContext'
 import BellIcon from '@/assets/BellIcon.svg'
 import { useRouter } from 'next/navigation'
-import { handleNotificationPermission } from '@/shared/config/firebase'
-import { useNotificationPermissionMutation } from '@/features/notification/hooks/useNotificationPermissionMutation'
+import { useNotificationHandler } from '@/features/notification/hooks/useNotificationHandler'
 
 interface NotificationModalProps {
   triggerText: string
@@ -15,22 +14,11 @@ export default function NotificationModal({
   triggerText,
 }: NotificationModalProps) {
   const router = useRouter()
-  const mutation = useNotificationPermissionMutation()
+  const { handlePermission } = useNotificationHandler()
 
   const onAllowClick = async () => {
-    const { result, userFcmToken } = await handleNotificationPermission()
-
-    if (result && userFcmToken) {
-      const patchResult = await mutation.mutateAsync({
-        action: 'updateUserFcmToken',
-        fcmToken: userFcmToken,
-      })
-      if (patchResult.success)
-        mutation.mutate({
-          action: 'updateUserNotificationSetting',
-          setting: true,
-        })
-    }
+    await handlePermission()
+    router.push('/signup/complete')
   }
 
   return (

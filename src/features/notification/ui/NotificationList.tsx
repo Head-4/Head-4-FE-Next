@@ -1,13 +1,13 @@
 'use client'
 
 import NotificationItem from '@/features/notification/ui/NotificationItem'
-import { useNotificationsQuery } from '@/features/notification/hooks/useNotificationsQuery'
+import { useNotificationsListQuery } from '@/features/notification/hooks/useNotificationsListQuery'
 import { useInView } from 'react-intersection-observer'
 import { useEffect } from 'react'
 
 export default function NotificationList() {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useNotificationsQuery()
+    useNotificationsListQuery()
   const { ref, inView } = useInView()
 
   useEffect(() => {
