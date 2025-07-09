@@ -1,4 +1,4 @@
-# univon (Next.js 리팩터링 진행중)
+# univon 
 
 > 대학교 공지사항 알림 서비스
 
@@ -17,59 +17,6 @@
 ## ✨ 주요 기능
 
 <details>
-<summary>⭐️ FCM 알림</summary>
-
-<br/>
-
-- Firebase Cloud Messaging(FCM)을 이용한 푸시 알림 기능 구현
-- Service Worker를 설정하여 웹과 앱 환경에서도 실시간 알림 수신 가능
-
-#### 📸 관련 이미지
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="이미지_주소_1" width="250" alt="알림 예시 1" /><br/>
-      <sub>푸시 알림 1</sub>
-    </td>
-    <td align="center">
-      <img src="이미지_주소_2" width="250" alt="알림 예시 2" /><br/>
-      <sub>푸시 알림 2</sub>
-    </td>
-  </tr>
-</table>
-
-</details>
-
-
-
-<details>
-<summary>⭐️ 소셜 로그인</summary>
-
-<br/>
-
-- 카카오 계정을 활용한 소셜 로그인 기능 제공
-
-#### 📸 관련 이미지
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="이미지_주소_3" width="250" alt="로그인 예시 1" /><br/>
-      <sub>카카오 로그인 화면</sub>
-    </td>
-    <td align="center">
-      <img src="이미지_주소_4" width="250" alt="로그인 예시 2" /><br/>
-      <sub>로그인 후 홈</sub>
-    </td>
-  </tr>
-</table>
-
-</details>
-
-
-
-<details>
 <summary>⭐️ 학교 설정 / 키워드 설정 / 알림 설정</summary>
 
 <br/>
@@ -82,23 +29,50 @@
 <table>
   <tr>
     <td align="center">
-      <img src="이미지_주소_5" width="250" alt="학교 설정" /><br/>
-      <sub>학교 선택</sub>
+      <img src="https://github.com/user-attachments/assets/b3160c33-ba97-474f-b342-2480d8dcc0a8" width="250" alt="메인 페이지" /><br/>
+      <sub>메인 공지사항 페이지</sub>
     </td>
     <td align="center">
-      <img src="이미지_주소_6" width="250" alt="키워드 설정" /><br/>
-      <sub>키워드 등록</sub>
+      <img src="https://github.com/user-attachments/assets/7fa48e0d-9df5-4e1c-903a-f7b7d599de98" width="250" alt="학교 설정" /><br/>
+      <sub>학교 설정 페이지</sub>
     </td>
     <td align="center">
-      <img src="이미지_주소_7" width="250" alt="알림 설정" /><br/>
-      <sub>알림 켜기/끄기</sub>
+      <img src="https://github.com/user-attachments/assets/73ce89f2-9329-49e3-a8e9-db41a982918d" width="250" alt="키워드 설정" /><br/>
+      <sub>키워드 설정 페이지</sub>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/b4ecae3e-e28b-4077-9bc0-ee3c78b37984" width="250" alt="알림 설정" /><br/>
+      <sub>알림 ON/OFF 설정</sub>
     </td>
   </tr>
 </table>
 
 </details>
 
+<details>
+<summary>⭐️ FCM 알림</summary>
 
+<br/>
+
+- Firebase Cloud Messaging(FCM)을 이용한 푸시 알림 기능 구현
+- Service Worker를 설정하여 웹과 앱 환경에서도 실시간 알림 수신 가능
+
+#### 📸 관련 이미지
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/ead5a55e-f85f-402a-bb0f-3a795ecd50fb" width="250" alt="푸시 알림 페이지" /><br/>
+      <sub>푸시 알림 페이지</sub>
+    </td>
+<!--     <td align="center">
+      <img src="이미지_주소_2" width="250" alt="알림 예시 2" /><br/>
+      <sub>푸시 알림 2</sub>
+    </td> -->
+  </tr>
+</table>
+
+</details>
 
 <details>
 <summary>⭐️ PWA</summary>
@@ -113,12 +87,8 @@
 <table>
   <tr>
     <td align="center">
-      <img src="이미지_주소_8" width="250" alt="PWA 설치" /><br/>
+      <img src="https://github.com/user-attachments/assets/e275af3e-e993-45a2-bee0-481d11e4fc8c" width="250" alt="PWA 설치" /><br/>
       <sub>PWA 설치 안내</sub>
-    </td>
-    <td align="center">
-      <img src="이미지_주소_9" width="250" alt="PWA 실행" /><br/>
-      <sub>PWA 실행 화면</sub>
     </td>
   </tr>
 </table>
@@ -146,7 +116,7 @@
 
 ## 👥 팀 소개
 
-| 👨‍💻 성지훈 (Front-end) | 🧑‍💻 박준형 (Back-end) | 🧑‍💻 엄지호 (Back-end) |
+|  성지훈 (Front-end) |  박준형 (Back-end) |  엄지호 (Back-end) |
 |------------------|------------------|------------------|
 
 
