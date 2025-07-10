@@ -113,8 +113,8 @@
 
 #### 💻 구현 방식
 
-- `Next.js App Router` + `next-pwa` 플러그인 사용
-- 서비스 워커 및 매니페스트 설정 (`manifest.json`, `service-worker.js`)
+- `next-pwa` 사용
+- 매니페스트 설정 (`manifest.json`)
 - 홈 화면 설치를 위한 설치 프롬프트 처리
 
 #### 📸 관련 이미지
