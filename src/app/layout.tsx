@@ -3,6 +3,7 @@ import './globals.css'
 import LayoutWrapper from '@/widgets/RootLayoutWrapper'
 import { ToastProvider } from '@/shared/providers/ToastContext'
 import { QueryProvider } from '@/shared/providers/QueryProvider'
+import PWAPrompt from '../shared/ui/PWAPrompt'
 
 export const viewport = {
   themeColor: '#ffffff',
@@ -50,6 +51,7 @@ export default function RootLayout({
           <div id="toast-root" />
           <div id="modal-root" />
           <div id="drawer-root" />
+          <PWAPrompt />
         </QueryProvider>
       </body>
     </html>
