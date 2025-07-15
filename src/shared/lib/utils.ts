@@ -30,3 +30,11 @@ export const formatToDateString = (isoString: string) => {
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}.${month}.${day}`;
 };
+
+export async function delay(ms: number) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("");
+    }, ms)
+  })
+}
