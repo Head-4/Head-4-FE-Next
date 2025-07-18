@@ -8,9 +8,9 @@ import SkeletonKeywordList from '@/features/keyword/ui/SkeletonKeywordList'
 export default function Page() {
   return (
     <div className="mt-6">
-      <KeywordInputForm />
-      <Suspense fallback={<SkeletonKeywordList count={3} />}>
+      <Suspense fallback={<SkeletonKeywordList count={2} />}>
         <ServerFetchBoundary fetchOptions={userKeywordListQueryOptions()}>
+          <KeywordInputForm />
           <KeywordChipList />
         </ServerFetchBoundary>
       </Suspense>
