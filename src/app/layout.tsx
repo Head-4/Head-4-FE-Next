@@ -4,6 +4,7 @@ import LayoutWrapper from '@/widgets/RootLayoutWrapper'
 import { ToastProvider } from '@/shared/providers/ToastContext'
 import { QueryProvider } from '@/shared/providers/QueryProvider'
 import PWAPrompt from '../shared/ui/PWAPrompt'
+import MutationLoading from '@/shared/ui/MutationLoading'
 
 export const viewport = {
   themeColor: '#ffffff',
@@ -52,6 +53,7 @@ export default function RootLayout({
           <div id="modal-root" />
           <div id="drawer-root" />
           <PWAPrompt />
+          <MutationLoading />
         </QueryProvider>
       </body>
     </html>
